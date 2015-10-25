@@ -1,0 +1,35 @@
+{
+  "name": "d3_exploding_boxplot",
+  "version": "0.1",
+  "authors": [
+    "mcaule <matthieu.caule@gmail.com>"
+  ],
+  "description": "d3 boxplot visualisation transforming in scatter plot",
+  "main": "src/d3_exploding_boxplot.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "d3",
+    "boxplot"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mcaule/d3_exploding_boxplot",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.5.6",
+    "d3-tip": "~0.6.7",
+    "requirejs": "~2.1.20"
+  },
+  "resolutions": {
+    "d3": "~3.5.6"
+  }
+}
