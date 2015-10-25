@@ -8,6 +8,28 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <script src="bower_components/requirejs/require.js"></script>
+    <link href="src/d3_exploding_boxplot.css" rel="stylesheet" type="text/css"></link>
+
+    <script type="text/javascript">
+
+  require.config({
+    baseUrl: ".",
+    paths:{
+      d3:'bower_components/d3/d3.min',
+      "d3-tip":'bower_components/d3-tip/index',
+      'd3-exploding-boxplot':'src/d3_exploding_boxplot'
+    },
+    shim:{
+      'd3-exploding-boxplot':{
+          deps:['d3','d3-tip']
+      },
+      'd3-tip':{
+        deps:['d3']
+      }
+    }
+  });
+  </script>
   </head>
   <body>
     <section class="page-header">
@@ -20,9 +42,13 @@
 
     <section class="main-content">
       <h1>
-<a id="d3_exploding_boxplot" class="anchor" href="#d3_exploding_boxplot" aria-hidden="true"><span class="octicon octicon-link"></span></a>d3_exploding_boxplot</h1>
+<a id="d3_exploding_boxplot" class="anchor" href="#d3_exploding_boxplot" aria-hidden="true"><span class="octicon octicon-link"></span></a>d3 exploding boxplot</h1>
 
 <p>A boxplot visualisation exploding into a scatter plot</p>
+
+<div id="chartContainer">
+</div>
+
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mcaule/d3_exploding_boxplot">D3 exploding boxplot</a> is maintained by <a href="https://github.com/mcaule">mcaule</a>.</span>
@@ -32,6 +58,35 @@
 
     </section>
 
-  
+    <script>
+
+    require(['d3-exploding-boxplot','d3'],function(exploding_boxplot,d3){
+
+    var box1 = d3.range(100).map(d3.random.normal(50,5))
+        .concat(d3.range(5).map(d3.random.normal(50,20)));
+
+
+
+    var boxtest = [21,  23,  24,  25,   29,  33,  49]
+    var box2 = d3.range(200).map(d3.random.normal(50,5))
+        .concat(d3.range(100).map(d3.random.normal(30,10)))
+        .concat(d3.range(100).map(d3.random.normal(70,10)));
+
+    var box4 = d3.range(4).map(d3.random.normal(50,20))
+
+    var data = box1.map(function(d){return {v:d,g:'box1'}})
+        .concat(box2.map(function(d){return {v:d,g:'box2'}}))
+        .concat(boxtest.map(function(d){return {v:d,g:'box3'}}))
+        .concat(box4.map(function(d){return {v:d,g:'box4'}}))
+
+
+    var chart = exploding_boxplot(data,{group:'g',y:'v',color:'g',
+    label:function(d){
+      return d.g+' '+data.indexOf(d)
+    }}).ylab('')
+
+    chart('#chartContainer')
+    })
+    </script>
   </body>
 </html>
