@@ -30,6 +30,10 @@
     }
   });
   </script>
+  <style>
+  .gist{font-size:12px;line-height:16px;margin-bottom:0px;width:600px}
+  .gist-meta{display:none;}
+  </style>
   </head>
   <body>
     <section class="page-header">
@@ -46,8 +50,19 @@
 
 <p>A boxplot visualisation exploding into a scatter plot</p>
 
+<h2>Demo !</h2>
+<p>Just test it, click on the boxplot ! </p>
+
 <div id="chartContainer">
 </div>
+
+<p>(Double click revert to boxplot)</p>
+
+<h2>Implementation</h2>
+
+<script src="https://gist.github.com/mcaule/8086a0dd869edd63e2b9.js"></script>
+
+
 
 
       <footer class="site-footer">
@@ -62,30 +77,33 @@
 
     require(['d3-exploding-boxplot','d3'],function(exploding_boxplot,d3){
 
-    var box1 = d3.range(100).map(d3.random.normal(50,5))
-        .concat(d3.range(5).map(d3.random.normal(50,20)));
+    //generate random data
+    var box1 = d3.range(100).map(d3.random.normal(Math.random()*100,5))
+                .map(function(d,i){return {v:d,g:'box1',t:'pt 1'+i}})
 
+    var box2 = d3.range(100).map(d3.random.normal(Math.random()*100,30))
+                .map(function(d,i){return {v:d,g:'box2',t:'pt 2'+i}})
 
+    var box3 = d3.range(100).map(function(){return Math.random()*100})
+                .map(function(d,i){return {v:d,g:'box3',t:'pt 3'+i}})
 
-    var boxtest = [21,  23,  24,  25,   29,  33,  49]
-    var box2 = d3.range(200).map(d3.random.normal(50,5))
-        .concat(d3.range(100).map(d3.random.normal(30,10)))
-        .concat(d3.range(100).map(d3.random.normal(70,10)));
+    var box4 = d3.range(80).map(d3.random.normal(50,5))
+              .concat(d3.range(20).map(d3.random.normal(50,25)))// with outliers
+              .map(function(d,i){return {v:d,g:'box4',t:'pt 4'+i}})
 
-    var box4 = d3.range(4).map(d3.random.normal(50,20))
+    var data = box1.concat(box2).concat(box3).concat(box4)
 
-    var data = box1.map(function(d){return {v:d,g:'box1'}})
-        .concat(box2.map(function(d){return {v:d,g:'box2'}}))
-        .concat(boxtest.map(function(d){return {v:d,g:'box3'}}))
-        .concat(box4.map(function(d){return {v:d,g:'box4'}}))
+    // chart(data,aes)
+    // aesthetic :
+    // y : point's value on y axis
+    // group : how to group data on x axis
+    // color : color of the point / boxplot
+    // label : displayed text in toolbox
+    var chart = exploding_boxplot(data,{y:'v',group:'g',color:'g',label:'t'})
 
-
-    var chart = exploding_boxplot(data,{group:'g',y:'v',color:'g',
-    label:function(d){
-      return d.g+' '+data.indexOf(d)
-    }}).ylab('')
-
+    //call chart on a div
     chart('#chartContainer')
+
     })
     </script>
   </body>
