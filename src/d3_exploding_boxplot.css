@@ -38,7 +38,8 @@ line.d3-exploding-boxplot.vline{
   border-radius: 2px;
 }
 
-g.tick text{
+g.tick text,
+g.axis text{
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
