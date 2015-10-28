@@ -4,9 +4,9 @@
 		define(['d3','d3-tip'],factory)
 	}else{
 		if(d3 && d3.tip)
-			window.h2d3 = factory(d3,d3.tip)
+			d3.exploding_boxplot = factory(d3,d3.tip)
 		else
-			window.h2d3 = factory(d3)
+			d3.exploding_boxplot = factory(d3)
 	}
 }(
 function(d3,d3tip)
