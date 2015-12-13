@@ -328,7 +328,7 @@ function(d3,d3tip)
     function draw()
     {
 			tip = tip || create_tip();
-
+			chart.tip = tip
       var boxContent = container.selectAll('.boxcontent')
           .data(groups)
           .enter().append('g')
@@ -367,7 +367,7 @@ function(d3,d3tip)
       margin = _;
       //update scales
       xscale.rangeRoundBands([0,width-margin.left-margin.right],boxpadding)
-      yscale.range([0,height-margin.top-margin.bottom])
+      yscale.range([height-margin.top-margin.bottom,0])
       return chart;
     };
 
