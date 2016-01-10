@@ -60,14 +60,14 @@ function(d3,d3tip)
     var height = 480
     var width = 600
     var boxpadding = 0.2
-    var margin = {top:10,bottom:20,left:30,right:10}
+    var margin = {top:10,bottom:30,left:40,right:10}
 
     aes.color = aes.color || aes.group
     aes.radius = aes.radius || d3.functor(3)
 		aes.label = aes.label || d3.functor('aes.label undefined')
 
     var ylab = typeof aes.y === "string" ? aes.y : ""
-    var xlab = typeof aes.x === "string" ? aes.x : ""
+    var xlab = typeof aes.group === "string" ? aes.group : ""
 
     var yscale = d3.scale.linear()
                       .domain(d3.extent(data.map(functorkey(aes.y))))
@@ -139,7 +139,13 @@ function(d3,d3tip)
       container.append('g')
             .attr('class','d3-exploding-boxplot x axis')
             .attr("transform", "translate(0,"+ (height-margin.top-margin.bottom) +")")
-            .call(xAxis);
+            .call(xAxis)
+          .append("text")
+            .attr("x",(width-margin.left-margin.right)/2)
+            .attr("dy", ".71em")
+            .attr('y',margin.bottom-14)
+            .style("text-anchor", "middle")
+            .text(xlab);
 
       container.append('g')
             .attr('class','d3-exploding-boxplot y axis')
