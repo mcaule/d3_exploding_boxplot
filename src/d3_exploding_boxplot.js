@@ -389,7 +389,7 @@ function(d3,d3tip)
     };
 		chart.ylimit = function(_){
 			if (!arguments.length) return yscale.domain();
-			yscale.domain(_.sort(d3.descending))
+			yscale.domain(_.sort(d3.ascending))
 			return chart
 		};
 		chart.tickFormat = function(_){
