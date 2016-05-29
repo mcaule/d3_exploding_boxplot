@@ -202,7 +202,7 @@ function(d3,d3tip)
 			var s = d3.select(this).append('g')
 				.attr('class','d3-exploding-boxplot box')
 				.on('click',function(d){
-					explode_boxplot(this.parentElement,g)
+					explode_boxplot(this.parentNode,g)
 				})
 				.selectAll('.box')
 				.data([g])
