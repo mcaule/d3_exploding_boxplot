@@ -392,6 +392,16 @@ function(d3,d3tip)
 			yscale.domain(_.sort(d3.ascending))
 			return chart
 		};
+		chart.yscale = function(_){
+			if (!arguments.length) return yscale;
+			yscale = _
+			return chart
+		};
+		chart.xscale = function(_){
+			if (!arguments.length) return xscale;
+			xscale = _
+			return chart
+		};
 		chart.tickFormat = function(_){
 			if (!arguments.length) return tickFormat;
 			tickFormat = _
