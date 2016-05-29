@@ -61,6 +61,7 @@ function(d3,d3tip)
     var width = 600
     var boxpadding = 0.2
     var margin = {top:10,bottom:30,left:40,right:10}
+		var rotateXLabels = false;
 
     aes.color = aes.color || aes.group
     aes.radius = aes.radius || d3.functor(3)
@@ -136,11 +137,20 @@ function(d3,d3tip)
 
 
 
-      container.append('g')
+      var xaxisG = container.append('g')
             .attr('class','d3-exploding-boxplot x axis')
             .attr("transform", "translate(0,"+ (height-margin.top-margin.bottom) +")")
-            .call(xAxis)
-          .append("text")
+            .call(xAxis);
+
+			if(rotateXLabels){
+				xaxisG.selectAll('text')
+				    .attr("transform", "rotate(90)")
+						.attr("dy",".35em")
+						.attr("x","9").attr("y","0")
+				    .style("text-anchor", "start");
+			}
+
+			xaxisG.append("text")
             .attr("x",(width-margin.left-margin.right)/2)
             .attr("dy", ".71em")
             .attr('y',margin.bottom-14)
@@ -412,6 +422,11 @@ function(d3,d3tip)
       colorscale.range(_)
       return chart;
     };
+		chart.rotateXLabels = function(_) {
+			if (!arguments.length) return rotateXLabels;
+      rotateXLabels = _
+      return chart;
+		}
 
 
     return chart;
