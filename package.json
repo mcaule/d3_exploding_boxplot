@@ -1,6 +1,6 @@
 {
   "name": "d3_exploding_boxplot",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "d3 boxplot visualisation transforming in scatter plot",
   "main": "src/d3_exploding_boxplot.js",
   "scripts": {
@@ -16,7 +16,8 @@
   ],
   "homepage": "http://mcaule.github.io/d3_exploding_boxplot",
   "author": {
-    "name":"Matthieu Caule"
+    "name":"Matthieu Caule",
+    "email":"matthieu.caule@gmail.com"
   },
   "dependencies": {
     "d3": "~3.5.6",
