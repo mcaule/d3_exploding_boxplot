@@ -57,8 +57,8 @@ function(d3,d3tip)
   {
     //defaults
     var iqr = 1.5
-    var height = 480
-    var width = 600
+    var height = aes.height || 480
+    var width = aes.width || 600
     var boxpadding = 0.2
     var margin = {top:10,bottom:30,left:40,right:10}
 		var rotateXLabels = false;
