@@ -4,7 +4,9 @@
   "description": "d3 boxplot visualisation transforming in scatter plot",
   "main": "src/d3_exploding_boxplot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "uglifycss": "uglifycss src/d3_exploding_boxplot.css > dist/d3_exploding_boxplot.min.css"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,15 @@
   "author": {
     "name":"Matthieu Caule",
     "email":"matthieu.caule@gmail.com"
+  },
+  "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglifycss": "0.0.27"
   },
   "dependencies": {
     "d3": "~3.5.6",
